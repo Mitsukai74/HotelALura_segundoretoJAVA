@@ -5,7 +5,7 @@ Se realizó una implementación de las clases del repositorio base en Netbeans, 
 Se deben importar las siguientes librerías:
   <li>Jcalendar 1.4</li>
   <li>mysql-connector-8.0.26</li>
-  
-Se realizó proyecto desde el inicio, directamente en el IDE mencionado, arrojando mejores resultados, ver este proyecto: <em>https://github.com/Mitsukai74/PruebaHotel_Empresa.git</em></p>
+</p>  
+<p>Se realizó proyecto desde el inicio, directamente en el IDE mencionado, arrojando mejores resultados, ver este proyecto: <em>https://github.com/Mitsukai74/PruebaHotel_Empresa.git</em></p>
 
 
