@@ -8,6 +8,6 @@ Se deben importar las siguientes librerías:
     <ul>mysql-connector-8.0.26</ul>   
     
   </li>
-Se realizó proyecto desde el inicio, directamente en el IDE mencionado, arrojando mejores resultados, ver este proyecto: </p>
+Se realizó proyecto desde el inicio, directamente en el IDE mencionado, arrojando mejores resultados, ver este proyecto: <em>https://github.com/Mitsukai74/PruebaHotel_Empresa.git</em></p>
 
 
