@@ -50,7 +50,18 @@ public class ConsultasSQL extends Conexion{
         PreparedStatement ps = null;
         Connection con = devolverConnection();
         
-        String sql = "INSERT INTO ";
+        String sql = "INSERT INTO huesped (nombre,apellido,fechaNacimiento,nacionalidad) VALUES (?,?,?,?)";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setString(1, huesped.getNombre());
+            ps.setString(2, huesped.getApellido());
+            ps.setDate(3, huesped.getFechaNacimiento());
+            ps.setString(4, huesped.getNacionalidad());
+            
+            ps.executeUpdate();
+            
+        } catch (Exception e) {
+        }
         
         return true;
     
