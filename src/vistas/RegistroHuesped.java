@@ -1,6 +1,7 @@
 
 package vistas;
 
+import Controller.Reserva;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,19 +38,25 @@ public class RegistroHuesped extends JFrame{
     private JLabel labelExit;
     private JLabel labelAtras;
     int xMouse, yMouse;
+    Reserva nueReservasView = new Reserva();
     
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					RegistroHuesped frame = new RegistroHuesped();
-					frame.setVisible(true);
+					frame.setVisible(true);                                       
+                                        
+                                        
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+    public void MostrarId() {
+        
+    }
     
     public RegistroHuesped() {
 		
@@ -89,9 +96,8 @@ public class RegistroHuesped extends JFrame{
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ReservasView reservas = new ReservasView();
-                                
-				//reservas.setVisible(true);
+				ReservasView reservas = new ReservasView();                                
+				reservas.setVisible(true);
 				dispose();				
 			}
 			@Override

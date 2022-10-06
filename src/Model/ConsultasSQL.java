@@ -50,17 +50,28 @@ public class ConsultasSQL extends Conexion{
         PreparedStatement ps = null;
         Connection con = devolverConnection();
         
-        String sql = "INSERT INTO huesped (nombre,apellido,fechaNacimiento,nacionalidad) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO huesped (nombre,apellido,fechaNacimiento,nacionalidad,telefono) VALUES (?,?,?,?,?)";
         try {
             ps=con.prepareStatement(sql);
             ps.setString(1, huesped.getNombre());
             ps.setString(2, huesped.getApellido());
             ps.setDate(3, huesped.getFechaNacimiento());
             ps.setString(4, huesped.getNacionalidad());
+            ps.setInt(5, huesped.getTelefono());
             
             ps.executeUpdate();
             
-        } catch (Exception e) {
+            try(ResultSet rs = ps.getGeneratedKeys()) {
+                    while (rs.next()) {
+                    System.out.println("Huesped Ingresado");
+                    huesped.setNumeroReserva(rs.getInt(1));
+                }
+                
+            } catch (Exception e) {
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         
         return true;
@@ -71,9 +82,8 @@ public class ConsultasSQL extends Conexion{
         Connection con = devolverConnection();
         String sql = "INSERT INTO reservas (fecha_entrada,fecha_salida,valor,formaPago) VALUES (?,?,?,?)";
         try {
-           // ps=con.prepareStatement(sql);
-           ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           //ps.setInt(1, reserva.getId());
+           
+           ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);           
            ps.setDate(1, reserva.getFechaInicial());
            ps.setDate(2, reserva.getFechaFinal());
            ps.setInt(3, reserva.getValor());
@@ -85,7 +95,7 @@ public class ConsultasSQL extends Conexion{
                 
                 while (rs.next()) {
                     System.out.println("Insertado........");
-                    reserva.setId(rs.getInt(1));                   
+                    reserva.setId(rs.getInt(1));                    
                 }
                 
             } catch (Exception e) {

@@ -49,6 +49,7 @@ public class ReservasView extends JFrame{
     private JLabel labelAtras;
     //instancia de reserva
     Reserva nuevReserva = new Reserva();
+    public  static int IdReserva;
     
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -328,14 +329,16 @@ public class ReservasView extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (ReservasView.txtFechaE.getDate() != null && ReservasView.txtFechaS.getDate() != null) {		
-					//RegistroHuesped registro = new RegistroHuesped();
-					//registro.setVisible(true);
-                                        //nuevReserva.setId(16);
+					RegistroHuesped registro = new RegistroHuesped();
+					registro.setVisible(true);                                        
                                         guardarReserva();
+                                         IdReserva = nuevReserva.getId();
+                                         System.out.println("Id que viene del modelo: " +IdReserva);
                                         
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
 				}
+                                
 			}						
 		});
 		btnsiguiente.setLayout(null);
@@ -363,17 +366,11 @@ public class ReservasView extends JFrame{
 	        int y = evt.getYOnScreen();
 	        this.setLocation(x - xMouse, y - yMouse);
             }
-            public void guardarReserva(){                    
+            public void guardarReserva(){                   
                 
                     nuevReserva.setFormaPago(txtFormaPago.getSelectedItem().toString());
                     ConsultasSQL nuevaSQL = new ConsultasSQL();
-                    nuevaSQL.guardarReserva(nuevReserva);
-                    
-                    System.out.println("fecha inicial del modelo " + nuevReserva.getFechaInicial());
-                    System.out.println("fecha final del modelo "+nuevReserva.getFechaFinal());
-                    System.out.println("valor de la reserva del modelo "+nuevReserva.getValor());
-                    System.out.println("modo de pago "+nuevReserva.getFormaPago());
-                    System.out.println("id de la reseva desde el modelo "+nuevReserva.getId());
+                    nuevaSQL.guardarReserva(nuevReserva);                    
                                 
 
             }
