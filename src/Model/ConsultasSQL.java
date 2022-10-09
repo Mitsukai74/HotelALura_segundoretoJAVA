@@ -16,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConsultasSQL extends Conexion{
-    Conexion newConexion = new Conexion();    
+    Conexion newConexion = new Conexion();
+    public int idReserva;
     
     public boolean loginUsuario(Usuarios usr){
         PreparedStatement ps=null;
@@ -95,7 +96,8 @@ public class ConsultasSQL extends Conexion{
                 
                 while (rs.next()) {
                     System.out.println("Insertado........");
-                    reserva.setId(rs.getInt(1));                    
+                    reserva.setId(rs.getInt(1));
+                    idReserva = reserva.getId();
                 }
                 
             } catch (Exception e) {

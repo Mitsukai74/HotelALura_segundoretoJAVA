@@ -1,7 +1,9 @@
 
 package vistas;
 
+import Controller.Huesped;
 import Controller.Reserva;
+import Model.ConsultasSQL;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +26,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.text.Format;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
@@ -32,13 +35,15 @@ public class RegistroHuesped extends JFrame{
     private JTextField txtNombre;
     private JTextField txtApellido;
     private JTextField txtTelefono;
-    private JTextField txtNreserva;
+    public static JTextField txtNreserva;
     private JDateChooser txtFechaN;
     private JComboBox<Format> txtNacionalidad;
     private JLabel labelExit;
     private JLabel labelAtras;
     int xMouse, yMouse;
     Reserva nueReservasView = new Reserva();
+    ConsultasSQL nuevaConsulta = new ConsultasSQL();
+    Huesped nuevoHuesped = new Huesped();
     
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,10 +58,7 @@ public class RegistroHuesped extends JFrame{
 				}
 			}
 		});
-	}
-    public void MostrarId() {
-        
-    }
+	}    
     
     public RegistroHuesped() {
 		
@@ -253,6 +255,17 @@ public class RegistroHuesped extends JFrame{
 		btnguardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+                           nuevoHuesped.setNombre(txtNombre.getText());
+                           nuevoHuesped.setApellido(txtApellido.getText());
+                           Date fechaNac=txtFechaN.getDate();
+                           nuevoHuesped.setFechaNacimiento(new java.sql.Date(fechaNac.getTime()));
+                           nuevoHuesped.setNacionalidad(txtNacionalidad.getSelectedItem().toString());
+                           nuevoHuesped.setTelefono(Integer.parseInt(txtTelefono.getText()));
+                           //nuevoHuesped.setNumeroReserva(Integer.parseInt(txtNreserva.getText()));
+                           
+                           nuevaConsulta.registroHuesped(nuevoHuesped);
+                           
+                            
 			}
 		});
 		btnguardar.setLayout(null);

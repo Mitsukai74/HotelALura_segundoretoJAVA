@@ -50,6 +50,7 @@ public class ReservasView extends JFrame{
     //instancia de reserva
     Reserva nuevReserva = new Reserva();
     public  static int IdReserva;
+    ConsultasSQL nuevaSQL = new ConsultasSQL();
     
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -334,6 +335,9 @@ public class ReservasView extends JFrame{
                                         guardarReserva();
                                          IdReserva = nuevReserva.getId();
                                          System.out.println("Id que viene del modelo: " +IdReserva);
+                                         int cargarId = nuevaSQL.idReserva;
+                                         System.out.println("El Id que viene directemente de la consulta: "+cargarId);
+                                         registro.txtNreserva.setText(String.valueOf(cargarId));                                         
                                         
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
@@ -368,8 +372,7 @@ public class ReservasView extends JFrame{
             }
             public void guardarReserva(){                   
                 
-                    nuevReserva.setFormaPago(txtFormaPago.getSelectedItem().toString());
-                    ConsultasSQL nuevaSQL = new ConsultasSQL();
+                    nuevReserva.setFormaPago(txtFormaPago.getSelectedItem().toString());                    
                     nuevaSQL.guardarReserva(nuevReserva);                    
                                 
 
